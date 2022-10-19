@@ -2,6 +2,17 @@ import {StyleSheet, Dimensions} from 'react-native';
 import colors from '../../Styles/colors';
 const {width, height} = Dimensions.get('screen');
 const styles = StyleSheet.create({
+  leaveWrap: {
+    flex: 1,
+    position: 'relative',
+    backgroundColor: '#FAFAFA',
+  },
+  leaveBanner: {
+    backgroundColor: colors.Blue,
+    height: 185,
+    paddingTop: 39,
+    alignItems: 'center',
+  },
   dashboardWrap: {
     flex: 1,
     position: 'relative',

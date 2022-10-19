@@ -6,6 +6,7 @@ import {Login} from './src/Screens/Login';
 import {SignUp} from './src/Screens/SignUp';
 import {Dashboard} from './src/Screens/Dashboard';
 import {Approval} from './src/Screens/Approval';
+import {ApprovalDetails} from './src/Screens/Approval/details';
 import {LeaveRequest} from './src/Screens/LeaveRequest';
 import {Attendance} from './src/Screens/Attendence';
 import {AttendancePunch} from './src/Screens/AttendencePunch';
@@ -207,6 +208,13 @@ export const App = () => {
                 }}
                 name="approval"
                 component={Approval}
+              />
+              <Stack.Screen
+                options={{
+                  headerShown: false,
+                }}
+                name="approvalDetail"
+                component={ApprovalDetails}
               />
               <Stack.Screen
                 options={{
