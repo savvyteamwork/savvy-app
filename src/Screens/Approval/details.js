@@ -22,9 +22,8 @@ export const ApprovalDetails = ({navigation}) => {
             </View>
         </View>
         <>
-        <MyLeaves/>
-          </>
-
+          <MyLeaves/>
+        </>
       </ScrollView>
     </View>
     )
