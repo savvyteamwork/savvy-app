@@ -62,23 +62,14 @@ export const Approval = ({navigation}) => {
               <View style={styles.categoryListImg}>
                 <Image source={images.LeaveIcon} style={styles.leaveIcon} />
               </View>
-              <View style={styles.categoryListText} >
-                <TouchableOpacity onPress={() => navigation.navigate('approvalDetail')}>
+              <View style={styles.categoryListText}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('approvalDetail')}>
                   <Text style={styles.categoryListLabel}>Leave Request</Text>
                 </TouchableOpacity>
               </View>
             </View>
 
-            <View style={styles.categoryList}>
-              <View style={styles.categoryListImg}>
-                <Image source={images.ExpenseIcon} style={styles.expenseIcon} />
-              </View>
-              <View style={styles.categoryListText}>
-                <TouchableOpacity>
-                  <Text style={styles.categoryListLabel}>Expense</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
             <View style={styles.categoryList}>
               <View style={styles.categoryListImg}>
                 <Image source={images.LoanIcon} style={styles.loanIcon} />
@@ -90,7 +81,7 @@ export const Approval = ({navigation}) => {
               </View>
             </View>
             <View style={styles.categoryList}>
-              <View style={styles.categoryListImg} >
+              <View style={styles.categoryListImg}>
                 <Image source={images.AdvanceIcon} style={styles.advanceIcon} />
               </View>
               <View style={styles.categoryListText}>

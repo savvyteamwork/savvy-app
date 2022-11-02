@@ -1,43 +1,29 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  useCallback,
-  useMemo,
-} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
 import {AppState} from '../../context/AppContext';
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  ImageBackground,
-  Button,
-} from 'react-native';
-import Lottie from 'lottie-react-native';
+import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import styles from './style';
 import Loader from '../../Components/Loader/Loader';
+import colors from '../../Styles/colors';
+import {Center, Modal, Button, FormControl, Input} from 'native-base';
+import {CONSTANTS} from '../../constants';
 
 export const MyLeaves = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [userLeaves, setUserLeaves] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
-  const {token} = useContext(AppState);
+  const {token, isReviewer} = useContext(AppState);
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch(
-        'http://savvy.developerpro.co/api/leave_categories/get',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token.access_tokens}`,
-          },
+      const res = await fetch(`${CONSTANTS.BACKEND_URL}leave_categories/get`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token.access_tokens}`,
         },
-      );
+      });
 
       const categoryList = await res.json();
 
@@ -52,7 +38,7 @@ export const MyLeaves = ({navigation}) => {
       setIsLoading(true);
       const empId = token.employee_detail.id;
       const res = await fetch(
-        `http://savvy.developerpro.co/api/get_leave_request/${empId}`,
+        `${CONSTANTS.BACKEND_URL}get_leave_request/${empId}`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -109,13 +95,73 @@ export const MyLeaves = ({navigation}) => {
                     <Text style={styles.typeText}>{el.category_name}</Text>
                   </View>
                 </View>
-                {/* <View style={styles.btnList}> */}
-                <TouchableOpacity style={styles.Edit}>
-                  <Text style={styles.rejectBtn}>
-                    {el.status == 0 ? 'Pending' : 'Aproved'}
-                  </Text>
-                </TouchableOpacity>
-                {/* </View> */}
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    padding: 30,
+                  }}>
+                  {isReviewer ? (
+                    <>
+                      <TouchableOpacity
+                        style={styles.Edit}
+                        onPress={() => setShowModal(true)}>
+                        <Text style={styles.rejectBtn}>Aproved</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles.rejectBtnBg}
+                        onPress={() => setShowModal(true)}>
+                        <Text style={{color: colors.White}}>Rejected</Text>
+                      </TouchableOpacity>
+                      <Center>
+                        <Modal
+                          isOpen={showModal}
+                          onClose={() => setShowModal(false)}
+                          transparent={true}
+                          hasBackdrop={true}
+                          backdropColor={'rgba(0, 0, 0, 0.8)'}
+                          backdropOpacity={0.3}>
+                          <Modal.Content
+                            maxWidth="400px"
+                            style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
+                            <Modal.CloseButton />
+                            <Modal.Header>Rejection Reason</Modal.Header>
+                            <Modal.Body style={{backgroundColor: '#FFF'}}>
+                              <FormControl>
+                                <FormControl.Label>Reason</FormControl.Label>
+                                <Input />
+                              </FormControl>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button.Group space={2}>
+                                <Button
+                                  variant="ghost"
+                                  colorScheme="blueGray"
+                                  onPress={() => {
+                                    setShowModal(false);
+                                  }}>
+                                  Cancel
+                                </Button>
+                                <Button
+                                  onPress={() => {
+                                    setShowModal(false);
+                                  }}>
+                                  Save
+                                </Button>
+                              </Button.Group>
+                            </Modal.Footer>
+                          </Modal.Content>
+                        </Modal>
+                      </Center>
+                    </>
+                  ) : (
+                    <TouchableOpacity style={styles.Edit}>
+                      <Text style={styles.rejectBtn}>
+                        {el.status == 0 ? 'Pending' : 'Aproved'}
+                      </Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
               </View>
             );
           })

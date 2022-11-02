@@ -28,6 +28,7 @@ import {MyAttendence} from './src/Screens/MyWork/MyAttendence';
 import {MyExpense} from './src/Screens/MyWork/MyExpense';
 import images from './src/Styles/images';
 import {UserDetail} from './src/Screens/UserDetail';
+import {NativeBaseProvider} from 'native-base';
 console.disableYellowBox = true;
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -164,184 +165,186 @@ export const App = () => {
         {/* <LoanRequest/> */}
         {/* <Success/> */}
         {/* <Calendar/> */}
-        <NavigationContainer>
-          <AppContext>
-            <Stack.Navigator initialRouteName="welcome">
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="welcome"
-                component={Welcome}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="login"
-                component={Login}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="signup"
-                component={SignUp}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="bottomTab"
-                component={BottomNav}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="leaveRequest"
-                component={LeaveRequest}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="approval"
-                component={Approval}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="approvalDetail"
-                component={ApprovalDetails}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="attendance"
-                component={Attendance}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="attendancepunch"
-                component={AttendancePunch}
-              />
+        <NativeBaseProvider>
+          <NavigationContainer>
+            <AppContext>
+              <Stack.Navigator initialRouteName="welcome">
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="welcome"
+                  component={Welcome}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="login"
+                  component={Login}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="signup"
+                  component={SignUp}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="bottomTab"
+                  component={BottomNav}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="leaveRequest"
+                  component={LeaveRequest}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="approval"
+                  component={Approval}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="approvalDetail"
+                  component={ApprovalDetails}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="attendance"
+                  component={Attendance}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="attendancepunch"
+                  component={AttendancePunch}
+                />
 
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="attendenceCorrection"
-                component={AttendenceCorrection}
-              />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="attendenceCorrection"
+                  component={AttendenceCorrection}
+                />
 
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="expense"
-                component={Expense}
-              />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="expense"
+                  component={Expense}
+                />
 
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="expenseclaim"
-                component={ExpenseClaim}
-              />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="expenseclaim"
+                  component={ExpenseClaim}
+                />
 
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="expensebalance"
-                component={ExpenseBalance}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="success"
-                component={Success}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="myleaves"
-                component={MyLeaves}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="myloan"
-                component={MyLoan}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="myattendence"
-                component={MyAttendence}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="myexpense"
-                component={MyExpense}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="loanRequest"
-                component={LoanRequest}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="loanApproval"
-                component={LoanApproval}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="myadvanceloan"
-                component={MyAttendence}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="clander"
-                component={Calendar}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="Detail"
-                component={Detail}
-              />
-              <Stack.Screen
-                options={{
-                  headerShown: false,
-                }}
-                name="userDetail"
-                component={UserDetail}
-              />
-            </Stack.Navigator>
-          </AppContext>
-        </NavigationContainer>
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="expensebalance"
+                  component={ExpenseBalance}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="success"
+                  component={Success}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="myleaves"
+                  component={MyLeaves}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="myloan"
+                  component={MyLoan}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="myattendence"
+                  component={MyAttendence}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="myexpense"
+                  component={MyExpense}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="loanRequest"
+                  component={LoanRequest}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="loanApproval"
+                  component={LoanApproval}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="myadvanceloan"
+                  component={MyAttendence}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="clander"
+                  component={Calendar}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="Detail"
+                  component={Detail}
+                />
+                <Stack.Screen
+                  options={{
+                    headerShown: false,
+                  }}
+                  name="userDetail"
+                  component={UserDetail}
+                />
+              </Stack.Navigator>
+            </AppContext>
+          </NavigationContainer>
+        </NativeBaseProvider>
       </SafeAreaView>
     </>
   );
