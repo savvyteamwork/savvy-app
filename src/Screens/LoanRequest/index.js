@@ -38,16 +38,13 @@ export const LoanRequest = ({navigation}) => {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch(
-        'http://savvy.developerpro.co/api/get_loan_types',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token.access_tokens}`,
-          },
+      const res = await fetch(`${CONSTANTS.BACKEND_URL}get_loan_types`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token.access_tokens}`,
         },
-      );
+      });
       const categoryList = await res.json();
       if (categoryList.status === 'success') {
         setLoaneCategories(categoryList.response);
@@ -73,18 +70,15 @@ export const LoanRequest = ({navigation}) => {
         notes: notes,
       };
       setIsLoading(true);
-      let res = await fetch(
-        'http://savvy.developerpro.co/api/loan_request/add',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token.access_tokens}`,
-          },
-          body: JSON.stringify(LoanRequest),
+      let res = await fetch(`${CONSTANTS.BACKEND_URL}loan_request/add`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token.access_tokens}`,
         },
-      );
+        body: JSON.stringify(LoanRequest),
+      });
       let resJson = await res.json();
 
       if (resJson.status === 'success') {

@@ -9,6 +9,7 @@ import styles from './style';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import SelectDropdown from 'react-native-select-dropdown';
 import {MyLeaves} from '../MyWork/MyLeaves';
+import {CONSTANTS} from '../../constants';
 
 export const LeaveRequest = ({navigation}) => {
   const [tab, setTab] = useState(1);
@@ -30,16 +31,13 @@ export const LeaveRequest = ({navigation}) => {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch(
-        'http://savvy.developerpro.co/api/leave_categories/get',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token.access_tokens}`,
-          },
+      const res = await fetch(`${CONSTANTS.BACKEND_URL}leave_categories/get`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token.access_tokens}`,
         },
-      );
+      });
       const categoryList = await res.json();
 
       setLeaveCategories(categoryList.response);
@@ -63,17 +61,13 @@ export const LeaveRequest = ({navigation}) => {
     };
     setIsLoading(true);
     axios
-      .post(
-        'http://savvy.developerpro.co/api/leave_request/add',
-        leaveRequest,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token.access_tokens}`,
-          },
+      .post(`${CONSTANTS.BACKEND_URL}leave_request/add`, leaveRequest, {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token.access_tokens}`,
         },
-      )
+      })
       .then(res => {
         console.log('checking response', res);
         data = res.data;

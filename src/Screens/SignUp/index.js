@@ -8,6 +8,7 @@ import {
   ImageBackground,
   Button,
 } from 'react-native';
+import {CONSTANTS} from '../../constants';
 import images from '../../Styles/images';
 import styles from './style';
 
@@ -22,7 +23,7 @@ export const SignUp = ({navigation}) => {
       email: email,
       password: password,
     };
-    fetch('http://savvy.developerpro.co/api/register', {
+    fetch(`${CONSTANTS.BACKEND_URL}register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

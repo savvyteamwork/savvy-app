@@ -15,6 +15,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import SelectDropdown from 'react-native-select-dropdown';
 import images from '../../Styles/images';
 import styles from './style';
+import {CONSTANTS} from '../../constants';
 
 export const ExpenseClaim = ({navigation}) => {
   const [date, setDate] = useState(new Date());
@@ -41,17 +42,14 @@ export const ExpenseClaim = ({navigation}) => {
 
   const fetchExpenses = async () => {
     try {
-      const res = await fetch(
-        'http://savvy.developerpro.co/api/expense_type/get',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token.access_tokens}`,
-          },
+      const res = await fetch(`${CONSTANTS.BACKEND_URL}expense_type/get`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token.access_tokens}`,
         },
-      );
+      });
 
       const data = await res.json();
       if (data.status === 'success') {
@@ -96,18 +94,15 @@ export const ExpenseClaim = ({navigation}) => {
         }),
       };
       setIsLoading(true);
-      const res = await fetch(
-        'http://savvy.developerpro.co/api/expense_request/add',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token.access_tokens}`,
-          },
-          body: JSON.stringify(expense),
+      const res = await fetch(`${CONSTANTS.BACKEND_URL}expense_request/add`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token.access_tokens}`,
         },
-      );
+        body: JSON.stringify(expense),
+      });
 
       const data = await res.json();
       if (data.status === 'success') {

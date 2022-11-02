@@ -11,6 +11,7 @@ import {
   Button,
 } from 'react-native';
 import styles from './style';
+import {CONSTANTS} from '../../constants';
 
 export const MyLoan = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,16 +20,13 @@ export const MyLoan = ({navigation}) => {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch(
-        'http://savvy.developerpro.co/api/get_loan_types',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token.access_tokens}`,
-          },
+      const res = await fetch(`${CONSTANTS.BACKEND_URL}get_loan_types`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token.access_tokens}`,
         },
-      );
+      });
 
       const categoryList = await res.json();
 
@@ -43,7 +41,7 @@ export const MyLoan = ({navigation}) => {
       setIsLoading(true);
       const empId = token.employee_detail.id;
       const res = await fetch(
-        `http://savvy.developerpro.co/api/get_loan_requests/${empId}`,
+        `${CONSTANTS.BACKEND_URL}get_loan_requests/${empId}`,
         {
           headers: {
             'Content-Type': 'application/json',

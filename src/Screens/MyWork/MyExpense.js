@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import styles from './style';
+import {CONSTANTS} from '../../constants';
 
 export const MyExpense = ({navigation}) => {
   const {token} = useContext(AppState);
@@ -21,16 +22,13 @@ export const MyExpense = ({navigation}) => {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch(
-        'http://savvy.developerpro.co/api/expense_type/get',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            Authorization: `Bearer ${token.access_tokens}`,
-          },
+      const res = await fetch(`${CONSTANTS.BACKEND_URL}expense_type/get`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${token.access_tokens}`,
         },
-      );
+      });
 
       const categoryList = await res.json();
 
@@ -45,7 +43,7 @@ export const MyExpense = ({navigation}) => {
       setIsLoading(true);
       const empId = token.employee_detail.id;
       const res = await fetch(
-        `http://savvy.developerpro.co/api/get_employee_expense_requests/${empId}`,
+        `${CONSTANTS.BACKEND_URL}get_employee_expense_requests/${empId}`,
         {
           headers: {
             'Content-Type': 'application/json',

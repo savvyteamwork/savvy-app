@@ -12,6 +12,7 @@ import {
 import {Badge, Box, NativeBaseProvider, VStack} from 'native-base';
 import images from '../../Styles/images';
 import styles from './style';
+import {CONSTANTS} from '../../constants';
 
 export const Dashboard = ({navigation}) => {
   const [user, setUser] = useState({});
@@ -21,7 +22,7 @@ export const Dashboard = ({navigation}) => {
     try {
       const empId = token.employee_detail.id;
       const res = await fetch(
-        `http://savvy.developerpro.co/api/employee/detail/${empId}`,
+        `${CONSTANTS.BACKEND_URL}employee/detail/${empId}`,
         {
           headers: {
             'Content-Type': 'application/json',

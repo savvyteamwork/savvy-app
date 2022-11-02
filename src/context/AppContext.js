@@ -2,6 +2,7 @@ import React, {createContext, useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import {NavigationContext} from '@react-navigation/native';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {CONSTANTS} from '../constants';
 
 export const AppState = createContext();
 
@@ -40,7 +41,7 @@ const AppContext = ({children}) => {
 
   const handleLogin = (data, navigation) => {
     setIsLoading(true);
-    fetch('http://savvy.developerpro.co/api/login', {
+    fetch(`${CONSTANTS.BACKEND_URL}login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'multipart/form-data',
