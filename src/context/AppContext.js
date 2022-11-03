@@ -49,6 +49,7 @@ const AppContext = ({children}) => {
       body: data,
     })
       .then(res => {
+        console.log('user response.......', res);
         return res.json();
       })
       .then(data => {

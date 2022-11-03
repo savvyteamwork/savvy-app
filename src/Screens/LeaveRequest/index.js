@@ -46,7 +46,7 @@ export const LeaveRequest = ({navigation}) => {
     }
   };
 
-  const postLeaveRequest = () => {
+  const postLeaveRequest = async () => {
     const leaveRequest = {
       employee_leave_id: selectedCategory.id,
       employee_id: token.employee_detail.id,
@@ -60,7 +60,7 @@ export const LeaveRequest = ({navigation}) => {
       to_date: toDate.toLocaleString('en-CA', dateOptions),
     };
     setIsLoading(true);
-    axios
+    await axios
       .post(`${CONSTANTS.BACKEND_URL}leave_request/add`, leaveRequest, {
         headers: {
           'Content-Type': 'application/json',

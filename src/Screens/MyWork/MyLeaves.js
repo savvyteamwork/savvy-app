@@ -5,16 +5,14 @@ import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import styles from './style';
 import Loader from '../../Components/Loader/Loader';
 import colors from '../../Styles/colors';
-import {Center, Modal, Button, FormControl, Input} from 'native-base';
 import {CONSTANTS} from '../../constants';
+import {RejectLeaveModal} from '../../Components/Modals/RejectLeaveModal';
 
 export const MyLeaves = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [userLeaves, setUserLeaves] = useState([]);
   const [showModal, setShowModal] = useState(false);
-
   const {token, isReviewer} = useContext(AppState);
-
   const fetchCategories = async () => {
     try {
       const res = await fetch(`${CONSTANTS.BACKEND_URL}leave_categories/get`, {
@@ -113,46 +111,11 @@ export const MyLeaves = ({navigation}) => {
                         onPress={() => setShowModal(true)}>
                         <Text style={{color: colors.White}}>Rejected</Text>
                       </TouchableOpacity>
-                      <Center>
-                        <Modal
-                          isOpen={showModal}
-                          onClose={() => setShowModal(false)}
-                          transparent={true}
-                          hasBackdrop={true}
-                          backdropColor={'rgba(0, 0, 0, 0.8)'}
-                          backdropOpacity={0.3}>
-                          <Modal.Content
-                            maxWidth="400px"
-                            style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
-                            <Modal.CloseButton />
-                            <Modal.Header>Rejection Reason</Modal.Header>
-                            <Modal.Body style={{backgroundColor: '#FFF'}}>
-                              <FormControl>
-                                <FormControl.Label>Reason</FormControl.Label>
-                                <Input />
-                              </FormControl>
-                            </Modal.Body>
-                            <Modal.Footer>
-                              <Button.Group space={2}>
-                                <Button
-                                  variant="ghost"
-                                  colorScheme="blueGray"
-                                  onPress={() => {
-                                    setShowModal(false);
-                                  }}>
-                                  Cancel
-                                </Button>
-                                <Button
-                                  onPress={() => {
-                                    setShowModal(false);
-                                  }}>
-                                  Save
-                                </Button>
-                              </Button.Group>
-                            </Modal.Footer>
-                          </Modal.Content>
-                        </Modal>
-                      </Center>
+                      <RejectLeaveModal
+                        showModal={showModal}
+                        setShowModal={setShowModal}
+                        empData={el}
+                      />
                     </>
                   ) : (
                     <TouchableOpacity style={styles.Edit}>

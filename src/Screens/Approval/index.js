@@ -1,14 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {AppState} from '../../context/AppContext';
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  ImageBackground,
-  ScrollView,
-  Button,
-} from 'react-native';
+import {Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
 import images from '../../Styles/images';
 import styles from './style';
 import {CONSTANTS} from '../../constants';
